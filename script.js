@@ -3,7 +3,7 @@
             { text: 'Hey', delay: 800 },
             { text: 'Do you remember this?', delay: 1500 },
             { type: 'image', delay: 1000 },
-            { text: 'That was such a good day', delay: 1800 },
+            { text: 'Our First Movie Date 🫣', delay: 1800 },
             { text: "I don't think I ever said this properly", delay: 2000 },
             { text: 'How much these six months have meant to me', delay: 1500 },
             { text: 'So I made something for you', delay: 1800 },
@@ -56,7 +56,7 @@
                 if (msg.type === 'image') {
                     const div = document.createElement('div');
                     div.className = 'message message-image';
-                    div.innerHTML = '<img src="https://via.placeholder.com/300x200/9b59b6/ffffff?text=Replace+with+your+photo" alt="Our special moment">';
+                    div.innerHTML = '<img src="resouces/Snapchat-2077372259.jpg" alt="Our special moment">';
                     container.appendChild(div);
                 } else {
                     const div = document.createElement('div');
