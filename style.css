@@ -401,6 +401,113 @@ body {
     .card-content li { font-size: 0.9rem; padding: 0.5rem 0 0.5rem 1.5rem; }
 }
 
+/* Celebration Page Styles */
+.celebration-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.celebration-header {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #e91e63 0%, #9b59b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% { 
+        transform: scale(1.05);
+        filter: brightness(1.1);
+    }
+}
+
+.celebration-message {
+    font-size: 1.8rem;
+    color: #6b4d7a;
+    font-weight: 500;
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.celebration-hearts {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    font-size: 3rem;
+    animation: fadeInUp 1s ease 0.6s both;
+}
+
+.celebration-hearts span {
+    animation: float 3s ease-in-out infinite;
+}
+
+.celebration-hearts span:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.celebration-hearts span:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0);
+    }
+    50% { 
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.celebration-note {
+    font-size: 1.3rem;
+    color: #555;
+    font-weight: 400;
+    text-align: center;
+    max-width: 600px;
+    animation: fadeInUp 1s ease 0.9s both;
+}
+
+.celebration-signature {
+    font-size: 1.5rem;
+    color: #9b59b6;
+    font-weight: 600;
+    font-style: italic;
+    animation: fadeInUp 1s ease 1.2s both;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.celebration-signature:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+#celebration {
+    cursor: pointer;
+}
+
 @media (max-width: 480px) {
     .landing-header { font-size: 1.8rem; }
     .counter-value { font-size: 1.8rem; }
@@ -408,4 +515,10 @@ body {
     .card { padding: 1.5rem 1.2rem; }
     .card-title { font-size: 1.15rem; margin-bottom: 1rem; }
     .card-content li { font-size: 0.85rem; line-height: 1.4; }
+    
+    .celebration-header { font-size: 2.5rem; }
+    .celebration-message { font-size: 1.4rem; }
+    .celebration-hearts { font-size: 2.5rem; gap: 1.5rem; }
+    .celebration-note { font-size: 1rem; }
+    .celebration-signature { font-size: 1.2rem; }
 }

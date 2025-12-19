@@ -96,5 +96,23 @@ document.getElementById('continue-btn').addEventListener('click', () => showSect
 document.getElementById('photos-btn').addEventListener('click', () => showSection('photos'));
 document.getElementById('cards-btn').addEventListener('click', () => showSection('cards'));
 
+// Navigate to celebration when Enter is pressed in cards section
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        const active = document.querySelector('.section.active');
+        if (active && active.id === 'cards') {
+            showSection('celebration');
+        }
+    }
+});
+
+// Allow clicking celebration to restart
+const celebrationSection = document.getElementById('celebration');
+if (celebrationSection) {
+    celebrationSection.addEventListener('click', () => {
+        showSection('landing');
+    });
+}
+
 // Start
 showSection('landing');
