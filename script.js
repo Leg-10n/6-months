@@ -14,6 +14,7 @@ const CHAT_CONVERSATION = [
 ];
 
 let counterInterval;
+let cardClickCount = 0;
 
 function updateCounter() {
     const startDate = new Date(RELATIONSHIP_START);
@@ -34,10 +35,18 @@ function showSection(sectionId) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
     
-    if (sectionId === 'landing') startCounter();
-    else if (sectionId === 'chat') { 
+    if (sectionId === 'landing') {
+        startCounter();
+    } else if (sectionId === 'chat') { 
         clearInterval(counterInterval); 
         startChatSequence(); 
+    } else if (sectionId === 'cards') {
+        // Reset card click count and hide button when entering cards section
+        cardClickCount = 0;
+        const celebrationBtn = document.getElementById('celebration-btn');
+        if (celebrationBtn) {
+            celebrationBtn.style.display = 'none';
+        }
     }
 }
 
@@ -78,51 +87,59 @@ async function startChatSequence() {
     container.scrollTop = container.scrollHeight;
 }
 
-// Card flip logic
-document.querySelector('.card-stack').addEventListener('click', function() {
-    const stack = this;
-    if (stack.classList.contains('flipped')) return;
-    
-    stack.classList.add('flipped');
-    
-    setTimeout(() => {
-        stack.appendChild(stack.firstElementChild);
-        stack.classList.remove('flipped');
-    }, 600);
-});
+// Card flip logic with improved button handling
+const cardStack = document.querySelector('.card-stack');
+if (cardStack) {
+    cardStack.addEventListener('click', function() {
+        const stack = this;
+        if (stack.classList.contains('flipped')) return;
+        
+        stack.classList.add('flipped');
+        cardClickCount++;
+        
+        setTimeout(() => {
+            stack.appendChild(stack.firstElementChild);
+            stack.classList.remove('flipped');
+            
+            // Show celebration button after viewing all 6 cards
+            if (cardClickCount >= 6) {
+                const celebrationBtn = document.getElementById('celebration-btn');
+                if (celebrationBtn) {
+                    celebrationBtn.style.display = 'inline-block';
+                    // Scroll to make button visible on mobile
+                    setTimeout(() => {
+                        celebrationBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                }
+            }
+        }, 600);
+    });
+}
 
 // Event Listeners for buttons
 document.getElementById('continue-btn').addEventListener('click', () => showSection('chat'));
 document.getElementById('photos-btn').addEventListener('click', () => showSection('photos'));
 document.getElementById('cards-btn').addEventListener('click', () => showSection('cards'));
-document.getElementById('restart-btn').addEventListener('click', () => showSection('landing'));
+document.getElementById('restart-btn').addEventListener('click', () => {
+    // Reset everything
+    cardClickCount = 0;
+    const celebrationBtn = document.getElementById('celebration-btn');
+    if (celebrationBtn) {
+        celebrationBtn.style.display = 'none';
+    }
+    showSection('landing');
+});
 document.getElementById('celebration-btn').addEventListener('click', () => showSection('celebration'));
 
 // Navigate to celebration when Enter is pressed in cards section (for desktop)
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         const active = document.querySelector('.section.active');
-        if (active && active.id === 'cards') {
+        if (active && active.id === 'cards' && cardClickCount >= 6) {
             showSection('celebration');
         }
     }
 });
-
-// Track card clicks to enable celebration button
-let cardClickCount = 0;
-const cardStack = document.querySelector('.card-stack');
-if (cardStack) {
-    cardStack.addEventListener('click', function(e) {
-        cardClickCount++;
-        // Show celebration button only after the last card (6th card) has been shown
-        if (cardClickCount >= 6) {
-            const celebrationBtn = document.getElementById('celebration-btn');
-            if (celebrationBtn) {
-                celebrationBtn.style.display = 'inline-block';
-            }
-        }
-    });
-}
 
 // Start
 showSection('landing');
