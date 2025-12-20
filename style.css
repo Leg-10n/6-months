@@ -409,8 +409,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 
 .celebration-header {
@@ -422,6 +424,7 @@ body {
     background-clip: text;
     text-align: center;
     animation: pulse 2s ease-in-out infinite;
+    margin: 0;
 }
 
 @keyframes pulse {
@@ -440,6 +443,7 @@ body {
     color: #6b4d7a;
     font-weight: 500;
     animation: fadeInUp 1s ease 0.3s both;
+    margin: 0;
 }
 
 .celebration-hearts {
@@ -448,6 +452,7 @@ body {
     justify-content: center;
     font-size: 3rem;
     animation: fadeInUp 1s ease 0.6s both;
+    margin: 0.5rem 0;
 }
 
 .celebration-hearts span {
@@ -489,6 +494,7 @@ body {
     text-align: center;
     max-width: 600px;
     animation: fadeInUp 1s ease 0.9s both;
+    margin: 0;
 }
 
 .celebration-signature {
@@ -499,6 +505,7 @@ body {
     animation: fadeInUp 1s ease 1.2s both;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin: 0.5rem 0 1rem 0;
 }
 
 .celebration-signature:hover {
@@ -510,17 +517,37 @@ body {
     cursor: pointer;
 }
 
-@media (max-width: 480px) {
-    .landing-header { font-size: 1.8rem; }
-    .counter-value { font-size: 1.8rem; }
-    .card-stack { height: 520px; }
-    .card { padding: 1.5rem 1.2rem; }
-    .card-title { font-size: 1.15rem; margin-bottom: 1rem; }
-    .card-content li { font-size: 0.85rem; line-height: 1.4; }
+#celebration .btn {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .celebration-container {
+        gap: 1rem;
+        padding: 1rem;
+    }
     
-    .celebration-header { font-size: 2.5rem; }
-    .celebration-message { font-size: 1.4rem; }
-    .celebration-hearts { font-size: 2.5rem; gap: 1.5rem; }
-    .celebration-note { font-size: 1rem; }
-    .celebration-signature { font-size: 1.2rem; }
+    .celebration-header { 
+        font-size: 2.8rem; 
+    }
+    
+    .celebration-message { 
+        font-size: 1.5rem; 
+    }
+    
+    .celebration-hearts { 
+        font-size: 2.5rem; 
+        gap: 1.5rem; 
+        margin: 0.3rem 0;
+    }
+    
+    .celebration-note { 
+        font-size: 1.1rem; 
+    }
+    
+    .celebration-signature { 
+        font-size: 1.2rem; 
+        margin: 0.3rem 0 1rem 0;
+    }
 }
