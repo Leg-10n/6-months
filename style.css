@@ -237,6 +237,7 @@ body {
     min-height: 100vh;
     padding: 2rem;
     width: 100%;
+    flex-direction: column;
 }
 
 .card-stack {
@@ -246,6 +247,7 @@ body {
     height: 600px;
     cursor: pointer;
     margin: 0 auto;
+    flex-shrink: 0;
 }
 
 .card {

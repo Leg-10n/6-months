@@ -114,8 +114,8 @@ const cardStack = document.querySelector('.card-stack');
 if (cardStack) {
     cardStack.addEventListener('click', function(e) {
         cardClickCount++;
-        // Show celebration button after viewing at least one card
-        if (cardClickCount > 0) {
+        // Show celebration button only after the last card (6th card) has been shown
+        if (cardClickCount >= 6) {
             const celebrationBtn = document.getElementById('celebration-btn');
             if (celebrationBtn) {
                 celebrationBtn.style.display = 'inline-block';
