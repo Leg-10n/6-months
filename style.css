@@ -246,7 +246,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 420px;
-    height: 600px;
+    height: 450px;
     cursor: pointer;
     margin: 0 auto;
     flex-shrink: 0;
@@ -552,4 +552,13 @@ body {
         font-size: 1.2rem; 
         margin: 0.3rem 0 1rem 0;
     }
+}
+
+@media (max-width: 480px) {
+    .landing-header { font-size: 1.8rem; }
+    .counter-value { font-size: 1.8rem; }
+    .card-stack { height: 380px; }
+    .card { padding: 1.5rem 1.2rem; }
+    .card-title { font-size: 1.15rem; margin-bottom: 1rem; }
+    .card-content li { font-size: 0.85rem; line-height: 1.4; }
 }
