@@ -95,8 +95,10 @@ document.querySelector('.card-stack').addEventListener('click', function() {
 document.getElementById('continue-btn').addEventListener('click', () => showSection('chat'));
 document.getElementById('photos-btn').addEventListener('click', () => showSection('photos'));
 document.getElementById('cards-btn').addEventListener('click', () => showSection('cards'));
+document.getElementById('restart-btn').addEventListener('click', () => showSection('landing'));
+document.getElementById('celebration-btn').addEventListener('click', () => showSection('celebration'));
 
-// Navigate to celebration when Enter is pressed in cards section
+// Navigate to celebration when Enter is pressed in cards section (for desktop)
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         const active = document.querySelector('.section.active');
@@ -106,11 +108,19 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Allow clicking celebration to restart
-const celebrationSection = document.getElementById('celebration');
-if (celebrationSection) {
-    celebrationSection.addEventListener('click', () => {
-        showSection('landing');
+// Track card clicks to enable celebration button
+let cardClickCount = 0;
+const cardStack = document.querySelector('.card-stack');
+if (cardStack) {
+    cardStack.addEventListener('click', function(e) {
+        cardClickCount++;
+        // Show celebration button after viewing at least one card
+        if (cardClickCount > 0) {
+            const celebrationBtn = document.getElementById('celebration-btn');
+            if (celebrationBtn) {
+                celebrationBtn.style.display = 'inline-block';
+            }
+        }
     });
 }
 
